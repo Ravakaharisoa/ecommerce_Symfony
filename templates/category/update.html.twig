@@ -1,0 +1,21 @@
+{# layout principal #}
+{% extends 'base.html.twig' %} 
+{% block body %}
+<div class="container mt-5">
+    <div class="form col-md-4 m-auto">
+        <h2 class="h2 mb-3 font-weight-normal text-center"">Modifier une catégorie</h2>
+        {{ form_start(form) }}
+            <div class="mb-3">
+                {{ form_row(form.name, {
+                    label:"Nom de catégorie",
+                    'attr':{'class':'form form-control mt-2'}})
+                }}
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary btn-block">Modifier</button>
+            </div>
+            {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}

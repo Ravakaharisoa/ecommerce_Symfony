@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}categories{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="h2 mb-3 font-weight-normal text-center">Liste de catégorie disponible</h1>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ path('app_category_new') }}" class="btn btn-primary">Ajouter une catégorie</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Catégories</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+                    <tr class="">
+                        <td scope="row">{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        <td>
+                            <a href="{{ path('app_category_update',{'id':category.id}) }}" class="text-primary">Modifier</a> |
+                            <a href="{{ path('app_category_delete', {'id':category.id}) }}"  class="text-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                        <tr class="">
+                            <td colspan="3" class="text-center">Aucune catégorie à afficher pour l'instant</td>
+                        </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
