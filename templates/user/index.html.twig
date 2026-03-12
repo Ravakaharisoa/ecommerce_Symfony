@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="h2 mb-3 font-weight-normal text-center">Liste des utilisateurs</h1>
+        <div class="my-2">
+            {% include'layouts/_flash_message.html.twig' %}
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Prénom</th>
+                        <th scope="col">role</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr class="">
+                        <td scope="row">{{ user.id }}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.lastName}}</td>
+                        <td>{{user.firstName}}</td>
+                        <td>
+                            {% if('ROLE_ADMIN' in user.roles) %}
+                                <span class="badge text-bg-primary p-1">Administrateur</span>
+                            {% elseif('ROLE_EDITOR' in user.roles) %}
+                                <span class="badge text-bg-success p-1">Editeur</span>
+                            {% else %}
+                                <span class="badge text-bg-secondary p-1">Client</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if('ROLE_ADMIN' in user.roles) == false %}
+                                {% if('ROLE_EDITOR' in user.roles) == false %}
+                                    <a onclick="return confirm('Voulez-vous vraiment affecter le role éditeur à cet utilisateur?')" class="btn btn-sm btn-outline-primary" href="{{ path('app_user_to_editor',{'id':user.id}) }}">Ajouter comme éditeur</a>
+                                {% else %}
+                                    <a onclick="return confirm('Voulez-vous vraiment retirer le role éditeur à cet utilisateur?')" class="btn btn-sm btn-danger" href="{{ path('app_user_remove_editor_role',{'id':user.id}) }}">Retirer le role éditeur</a>
+                                {% endif %}   
+                                <a onclick="return confirm('Voulez-vous vraiment supprimer cet utilisateur?')" href="{{ path('app_user_remove',{'id':user.id}) }}" class="btn btn-danger btn-sm ms-1">Supprimer</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+{% endblock %}

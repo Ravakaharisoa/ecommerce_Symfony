@@ -5,6 +5,11 @@
 {% block body %}
 <div class="container mt-5">
     <h1 class="h2 mb-3 font-weight-normal text-center">Liste de catégorie disponible</h1>
+    
+    <div class="my-2">
+        {% include'layouts/_flash_message.html.twig' %}
+    </div>
+    
     <div class="d-flex justify-content-end mb-3">
         <a href="{{ path('app_category_new') }}" class="btn btn-primary">Ajouter une catégorie</a>
     </div>
@@ -23,8 +28,8 @@
                         <td scope="row">{{ category.id }}</td>
                         <td>{{ category.name }}</td>
                         <td>
-                            <a href="{{ path('app_category_update',{'id':category.id}) }}" class="text-primary">Modifier</a> |
-                            <a href="{{ path('app_category_delete', {'id':category.id}) }}"  class="text-danger">Supprimer</a>
+                            <a href="{{ path('app_category_update',{'id':category.id}) }}" class="btn btn-outline-primary">Modifier</a>
+                            <a href="{{ path('app_category_delete', {'id':category.id}) }}" class="btn btn-outline-danger">Supprimer</a>
                         </td>
                     </tr>
                     {% else %}
