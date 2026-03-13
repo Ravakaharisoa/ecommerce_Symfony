@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+    <div class="mb-3">
+        <label for="inputSubCategory" class="form-label">Sous catégorie</label>
+        {{ form_widget(form.name,{'attr':{'class':'form form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        <label for="inputCategory" class="form-label">Catégorie</label>
+        {{ form_widget(form.category,{'attr':{'class':'form form-select'}}) }}
+    </div>
+    <button class="btn btn-primary btn-block">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

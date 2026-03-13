@@ -48,7 +48,7 @@ final class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($category);
             $entityManager->flush();
-            $this->addFlash('success','Votre catégorie a été mdifiée!');
+            $this->addFlash('success','Votre catégorie a été modifiée!');
             return $this->redirectToRoute('app_category');
         }
         return $this->render('category/update.html.twig',['form' => $form->createView()]);
